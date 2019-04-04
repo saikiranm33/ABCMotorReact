@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "95090749115",
+    "firebase_url": "https://abc-react.firebaseio.com",
+    "project_id": "abc-react",
+    "storage_bucket": "abc-react.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95090749115:android:d9d8e80b1e494660",
+        "android_client_info": {
+          "package_name": "com.abcmotorreact"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95090749115-6jh3hh8gvg0fp6re2pmm3v16s6t1nog1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeJNEWG9ppRW_0mBYvf8o7pokGuWsnjfg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
