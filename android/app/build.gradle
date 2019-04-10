@@ -142,6 +142,8 @@ cruncherEnabled = false
 }
 
 dependencies {
+    implementation project(':react-native-fast-image')
+    implementation project(':react-native-view-overflow')
     implementation project(':react-native-device-info')
     implementation project(':react-native-firebase')
     implementation project(':react-native-vector-icons')

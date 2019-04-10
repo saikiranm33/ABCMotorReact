@@ -40,7 +40,7 @@ export default class VariantFlatList extends React.Component {
         return (
             <View style={styles.flatViewStyle}>
                 <FlatList
-                    data={myDataList}
+                    data={this.props.myDataList}
                     style={{ backgroundColor: "clear", borderRadius: 5,marginTop:80 }}
                     ItemSeparatorComponent={renderSeparator}
                     showsVerticalScrollIndicator={false}
@@ -55,17 +55,17 @@ export default class VariantFlatList extends React.Component {
                                 <View style={{ alignSelf: "center" }}>
 
                                     <Text style={{ paddingLeft: 10, color: "black" }}>
-                                        {item.title}
+                                        {item.VariantName}
                                     </Text>
 
 
                                     <Text style={{ paddingLeft: 10 }}>
-                                        {item.subtitle1}
+                                        {item.TransmissionType},{item.FuelType}
                                     </Text>
 
 
                                     <Text style={{ paddingLeft: 10 }}>
-                                        {item.subtitle2}
+                                    {'\u20B9'} {item.ExshowroomPrice}
                                     </Text>
 
                                 </View>

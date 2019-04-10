@@ -40,7 +40,7 @@ export default class DrivingSchool extends React.Component {
 
  GetDrivingSchool = async (item) => {
 
-  console.log("Banner List Called")
+  console.log("GetDrivingSchool List Called")
 
   console.log(item)
 
@@ -55,10 +55,20 @@ export default class DrivingSchool extends React.Component {
     "Version": item[0].Version,
     "EmailId": item[0].Email,
     "MobileNumber": item[0].ContactNumber,
-    "customerID": item[1],
-   
-
+    "CustomerId": item[1] ,
   }
+
+
+  // let reuiredInput2 = {
+
+
+  //   "CustomerName": sasaikiran, 
+  //   "DeviceId": "ddTyyVCtSxM:APA91bGBpQYIy-TBOEJCmIzMeu87FRrKQ7f_5cxerCyze7-cwBiyboT5wjcgmCfa8A6wnEf69pjnIGVkmHKvEOaAdN764lMl-w3rKrFSfOzzbXignwn0pU85isjwa2rS2J0iYkrKpR-I", 
+  //   "Version": "1.1.2",
+  //   "EmailId": "sai@gmail.com",
+  //   "MobileNumber": 9000865376,
+  //   "CustomerId": 97176,
+  // }
 
 console.log(reuiredInput)
 
@@ -86,10 +96,13 @@ console.log(reuiredInput)
       console.log(responseJson)
 
 
-      // let responseValue = responseJson.Status
+      let responseValue = responseJson.StatusCode
 
 
-      // if (responseValue.StatusCode == "2") {
+      console.log(responseValue)
+
+
+      // if (responseValue  == "2") {
 
       //   console.log("Success")
 
@@ -105,7 +118,8 @@ console.log(reuiredInput)
       // }
 
 
-      // else {
+      // else 
+      // {
       //  Alert.alert(`Something went wrong please try after some time`);
 
       //  this.setState({ isLoading: false })
@@ -166,7 +180,8 @@ console.log(reuiredInput)
 
         <TouchableOpacity
           style={{ height: 50, backgroundColor: "#f4bf42", borderRadius: 50 / 2, justifyContent: "center", alignSelf: "center", width: 240, marginTop: 50 }}
-          onPress={() =>  this.onLogOut() }>
+         onPress={() =>  this.checkAppVersion() }>
+         {/* onPress={() =>  this.onLogOut() }>  */}
           <Text style={{ textStyle: "bold", alignSelf: "center" }}> BOOK AN APPOINTMENT </Text>
         </TouchableOpacity>
 

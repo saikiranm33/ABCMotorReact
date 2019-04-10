@@ -20,7 +20,7 @@ import OnRoadPrice from '../Screens/NewCarScreens/OnRoadPrice'
 //import TestDrive from '../Screens/NewCarScreens/TestDrive'
  import Header from '../Components/header'
  import HeaderBack from '../Components/headerBack'
-
+import Dashboard2 from '../Screens/Dashboard2'
 
 
 const LoggedInNavigator = createStackNavigator(
@@ -32,6 +32,14 @@ const LoggedInNavigator = createStackNavigator(
         screen: DashboardView,
       
       },
+
+      dashBoardView2: {
+  
+        screen: Dashboard2,
+       
+      
+      },
+
 
       header: {
   
@@ -120,7 +128,7 @@ const LoggedInNavigator = createStackNavigator(
   
     },
     {
-      initialRouteName: 'dashBoardView',
+      initialRouteName: 'dashBoardView2',
     },
     {
       defaultNavigationOptions: {

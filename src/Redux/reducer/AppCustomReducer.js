@@ -92,16 +92,16 @@ const AppCustomReducer = (state = initalState, action) => {
 
 
 
-    // case 'LOAD_TASK':
+    case 'LOAD_TASK':
 
-    //   console.log("Reducer Called")
+      console.log("Reducer Called")
 
-    //   return {
-    //     ...state,
-    //     loadList: action.payload,
-    //     loading: false,
-    //     items: action.payload,
-    //   };
+      return {
+        ...state,
+        loadList: action.payload,
+        loading: false,
+        items: action.payload,
+      };
 
       
 

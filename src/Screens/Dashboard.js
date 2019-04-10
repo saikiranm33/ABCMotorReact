@@ -15,25 +15,29 @@ import {
 
 import { withCollapsible } from 'react-navigation-collapsible';
 import Swiper from 'react-native-swiper';
-import Header from '../Components/header';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import CustomFlatList from '../Components/customFlatList'
-import { createBottomTabNavigator, createAppContainer, createStackNavigator, NavigationActions, StackActions } from 'react-navigation';
+
 import AsyncImageAnimated from 'react-native-async-image-animated'
 import ColorUtilites from '../Utilites/utilites';
 import { connect } from 'react-redux';
 import { GetCity, GetModel, GetBrand, GetBranch, RegisterCustWithNoVehicle } from '../Redux/action'
 import getDataItem from '../Storage/getAsyncData'
 import Constant from '../Utilites/Constant'
+import axios from 'axios'
+import logout from '../api/auth'
+import FastImage from 'react-native-fast-image'
+import Spinner from 'react-native-loading-spinner-overlay';
+import Carousel from 'react-native-snap-carousel';
+
+
+
 
 
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-const extraHeaderHeight = Dimensions.get('window').height / 2;
+const extraHeaderHeight = Dimensions.get('window').height / 2 + 50;
 const screenWidth = Dimensions.get('window').width;
 const BackgroundColor = "#4d2c97"
-const BottomLineColor = "#d5d5d5"
-const BorderColor = "#ABAAAA"
+
 
 const myListItemArr = [
 
@@ -84,6 +88,7 @@ class DashboardView extends Component {
     this.state = {
       data: data,
       photoData: null,
+
     };
   }
 
@@ -92,7 +97,6 @@ class DashboardView extends Component {
   }
 
   componentDidMount() {
-
 
 
 
@@ -122,6 +126,7 @@ class DashboardView extends Component {
           alignItems: 'center',
           backgroundColor: index % 2 === 0 ? "white" : "#f7f7f7",
         }}>
+
         <Image
           style={{ width: 30, height: 30, marginLeft: 20 }}
           source={item.listImage}
@@ -161,8 +166,8 @@ class DashboardView extends Component {
         data={myListItemArr}
         renderItem={this.renderItem}
         keyExtractor={(item, index) => String(index)}
-        contentContainerStyle={{ paddingTop: extraHeaderHeight + 30 }}
-        scrollIndicatorInsets={{ bottom: 100 }}
+        contentContainerStyle={{ paddingTop: extraHeaderHeight + 50 }}
+        scrollIndicatorInsets={{ bottom: 0 }}
         onScroll={onScroll}
         _mustAddThis={animatedY}
       />
@@ -189,15 +194,15 @@ const SearchBarField = ({ navigation, collapsible }) => {
 
 
   return (
-   
-      <SwiperClass />
+
+    <SwiperClass />
 
   );
 };
 
 
 
-class SwiperClass extends React.Component {
+class SwiperClass extends DashboardView {
 
 
 
@@ -209,13 +214,25 @@ class SwiperClass extends React.Component {
     this.state = {
 
       bannerResponse: [],
-      notificationCount:null,
+      notificationCount: null,
+      totalStateResponse: [],
 
     }
 
   }
+  async onLogOut() 
+  {
 
-  GetCustomerVehicleList = async(item) => {
+
+   console.log("Called Me ")
+
+   await logout();
+   this.props.navigation.navigate('LoggedOut');
+ 
+ }
+
+
+  GetCustomerVehicleList = async (item) => {
 
     console.log(" GetCustomerVehicleList   Called")
 
@@ -226,10 +243,10 @@ class SwiperClass extends React.Component {
       },
       body: JSON.stringify({
 
-        "CustomerId": item.CustomerId, 
-        "DeviceId": item.DeviceId, 
+        "CustomerId": item.CustomerId,
+        "DeviceId": item.DeviceId,
         "Version": item.Version,
-       
+
       })
     })
       .then((response) => response.json())
@@ -241,7 +258,7 @@ class SwiperClass extends React.Component {
         console.log(" GetCustomerVehicleList   Success")
 
 
-   //     console.log(responseJson)
+        console.log(responseJson)
 
 
         let responseValue = responseJson.Status
@@ -251,43 +268,53 @@ class SwiperClass extends React.Component {
 
           console.log("get Customer Success")
 
-        
-
-
-           let responseRequired = this.state.bannerResponse
-
-     
-           console.log(responseRequired )
+          this.GetCustomerProfile(item)
 
 
 
-           {responseJson.Data.map((item, key) => {
-
-            responseRequired.push(item)
+          let responseImageRequired = this.state.bannerResponse
 
 
-           })}
+
+          let totalRequiredResp = this.state.totalStateResponse
 
 
-           console.log(responseRequired )
+          {
+            responseJson.Data.map((item, key) => {
 
-          this.setState({bannerResponse:responseRequired})
+              responseImageRequired.push(item.ImagePath)
+              totalRequiredResp.push(item)
+
+            })
+          }
+
+
+
+          console.log(totalRequiredResp)
+
+          this.setState({ bannerResponse: responseImageRequired })
+
+          this.setState({ totalStateResponse: totalRequiredResp })
+
+
+          console.log("Total State Response")
+          console.log(this.state.totalStateResponse)
 
           return responseJson
         }
 
 
         else {
-         // Alert.alert(`Something went wrong please try after some time`);
+          // Alert.alert(`Something went wrong please try after some time`);
 
-         this.setState({ bannerResponse: [] })
+          this.setState({ bannerResponse: [] })
 
         }
 
       })
       .catch((error) => {
         this.setState({ isLoading: false })
-       // Alert.alert(`Something went wrong please try after some time`);
+        // Alert.alert(`Something went wrong please try after some time`);
 
         console.error(error);
 
@@ -298,77 +325,204 @@ class SwiperClass extends React.Component {
 
   }
 
+  GetCustomerProfile = async (item) => {
+
+    //console.log("Banner List Called")
+
+
+
+
+
+
+    let bodyFormData = {
+
+      "CustomerId": item.CustomerId,
+      "DeviceId": item.DeviceId,
+      "Version": item.Version,
+
+    }
+
+    console.log(bodyFormData)
+
+    axios({
+      method: 'post',
+      url: Constant.ServiceURL + 'GetCustomerInformation',
+      data: bodyFormData,
+
+    })
+      .then(function (response) {
+
+        console.log(response);
+
+
+
+        console.log("GetCustomerInformation Response")
+
+
+        let responseValue = response.data
+
+
+
+        if (responseValue.Status.StatusCode == 2) {
+          console.log("Success")
+
+        }
+        else if (responseValue.Status.StatusCode == 1) {
+          if (responseValue.Status.DataCode == -1) {
+
+
+            Alert.alert("Multiple Users Logged Please Register Again")
+
+
+            console.log("Multiple User Called ")
+
+     
+
+
+
+          }
+
+
+        }
+
+
+
+
+      }.bind(this))
+      .catch(error => {
+
+
+
+        console.log(error), this.setState({ isLoading: false })
+        // Alert.alert(`Something went wrong please try after some time`);
+
+        console.error(error);
+
+
+      }
+      )
+      .then(function () {
+        // always executed
+      });
+
+  }
+
+
 
   GetBannerList = async (item) => {
 
-    console.log("Banner List Called")
+    //console.log("Banner List Called")
 
-    console.log(item)
+    this.setState({ bannerResponse: [] })
 
-    fetch(Constant.ServiceURL + 'GetBannersList', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
 
-        "CustomerId": item.CustomerId, 
-        "DeviceId": item.DeviceId, 
-        "Version": item.Version,
-       
-      })
+
+
+    let bodyFormData = {
+
+      "CustomerId": item.CustomerId,
+      "DeviceId": item.DeviceId,
+      "Version": item.Version,
+
+    }
+
+    console.log(bodyFormData)
+
+    axios({
+      method: 'post',
+      url: Constant.ServiceURL + 'GetBannersList',
+      data: bodyFormData,
+
     })
-      .then((response) => response.json())
+      .then(function (response) {
 
-      .then((responseJson) => {
+        console.log(response);
 
+        if (response.data.Status.StatusCode == 2) {
+          AsyncStorage.setItem('UserInformation', bodyFormData);
+        }
 
 
         console.log("Banner List Response")
 
 
-        console.log(responseJson)
+        let responseValue = response.data
 
 
-        let responseValue = responseJson.Status
 
-
-        if (responseValue.StatusCode == "2") {
-
+        if (responseValue.Status.StatusCode == 2) {
           console.log("Success")
 
-          this.setState({ bannerResponse: responseJson.Data })
+          let requiredArray = []
 
-          this.setState({notificationCount:responseJson.NotificationCount})
+          {
+            responseValue.Data.map((item, key) => {
 
-       
+              requiredArray.push(item.Path)
 
-         // this.GetCustomerVehicleList(item)
 
-          return responseJson
+            })
+          }
+
+
+          this.setState({ bannerResponse: requiredArray })
+
+
+          this.setState({ totalStateResponse: responseValue.Data })
+
+          console.log("Total State Response")
+          console.log(this.state.totalStateResponse)
+
+          this.setState({ notificationCount: responseValue.NotificationCount })
+
+          this.GetCustomerVehicleList(bodyFormData)
+
+        }
+        else if (responseValue.Status.StatusCode == 1) {
+          if (responseValue.Status.DataCode == -1) {
+
+
+            Alert.alert("Multiple Users Logged Please Register Again")
+
+            Alert.alert(
+              'Multiple Users Logged ',
+              'Please Register Again',
+              [
+                
+                { text: 'OK', onPress: () => { this.onLogOut() } },
+              
+              ]
+            )
+
+
+            console.log("Multiple User Called ")
+
+          }
+
+
         }
 
 
-        else {
-         // Alert.alert(`Something went wrong please try after some time`);
 
-         this.setState({ bannerResponse: [] })
+      }.bind(this))
+      .catch(error => {
 
-        }
 
-      })
-      .catch((error) => {
-        this.setState({ isLoading: false })
-       // Alert.alert(`Something went wrong please try after some time`);
+
+        console.log(error), this.setState({ isLoading: false })
+        // Alert.alert(`Something went wrong please try after some time`);
 
         console.error(error);
 
         this.setState({ bannerResponse: [] })
-
-
+      }
+      )
+      .then(function () {
+        // always executed
       });
 
   }
+
 
 
 
@@ -414,7 +568,7 @@ class SwiperClass extends React.Component {
   componentDidMount() {
 
 
-    console.log("Called Me")
+
 
 
     this.checkAppVersion()
@@ -426,113 +580,225 @@ class SwiperClass extends React.Component {
 
   render() {
 
-    
+
+
+
+
+    console.log("My banner Called Me")
+    console.log(this.state.totalStateResponse)
+    console.log(this.state.bannerResponse)
+
 
     return (
 
 
-
-
       <View
-      style={{
-        height: '100%',
-        justifyContent: 'center',
-        backgroundColor: ColorUtilites.BackgroundColor,
-      }}>
+        style={{
+          height: '100%',
+          justifyContent: 'center',
+          backgroundColor: ColorUtilites.BackgroundColor,
+        }}>
 
 
-      <View style={styles.header}>
+        <View style={styles.header}>
 
-        <View style={{ flex: 1 }}></View>
+          <View style={{ flex: 1 }}></View>
 
 
 
-        <View style={{ flex: 1, justifyContent: "flex-end", alignContent: "center", alignItems: "center", alignSelf: "center" }}>
-          <Text style={styles.headertext}>DashBoard</Text>
+          <View style={{ flex: 1, justifyContent: "flex-end", alignContent: "center", alignItems: "center", alignSelf: "center" }}>
+            <Text style={styles.headertext}>DashBoard</Text>
+          </View>
+
+
+          <View style={{ flex: 1, justifyContent: "flex-end", flexDirection: "row", alignContent: "center" }}>
+            <ImageBackground source={require('../Images/HomeScreen/notification_icon.png')} style={styles.imageStyle2}>
+              <Text style={{ marginLeft: 20, backgroundColor: "yellow", width: 20, height: 20, marginTop: -10, fontSize: 8, borderRadius: 10, alignSelf: "center", padding: 2, paddingTop: 5 }} >  {this.state.notificationCount}  </Text>
+            </ImageBackground>
+
+          </View>
+
+
         </View>
 
 
 
 
-        <View style={{ flex: 1, justifyContent: "flex-end", flexDirection: "row", alignContent: "center" }}>
-          <ImageBackground source={require('../Images/HomeScreen/notification_icon.png')} style={styles.imageStyle2}>
-        <Text style={{marginLeft:20,backgroundColor:"yellow",width:20,height:20,marginTop:-10,fontSize:8,borderRadius:10,alignSelf:"center",padding:2,paddingTop:5}} >  {this.state.notificationCount}  </Text>
-          </ImageBackground>
-         
-        </View>
+
+        {this.state.totalStateResponse.length != 0 || this.state.totalStateResponse != [] ?
 
 
+          <Swiper style={styles.wrapper} showsButtons={false} autoplay={true} dotColor="white" dotColor="white" activeDot={<View style={{ backgroundColor: 'white', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginBottom: -20, }} />} dot={<View style={{ backgroundColor: 'rgba(0,0,0,.2)', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginBottom: -20 }} />}   >
+            {this.state.totalStateResponse.map((item, key) => {
+
+
+
+              return (
+                <View style={styles.slide1}>
+
+                  <Spinner
+                    visible={this.state.isLoading}
+                    TextInput={"Please Wait"}
+                    textStyle={styles.spinnerTextStyle}
+                    animation={"fade"}
+                    color="gray"
+                  />
+
+                  {item.Description != undefined || "" ?
+                    <View>
+
+                      {/* <AsyncImageAnimated
+                        source={{
+                          uri: this.state.bannerResponse[key]
+
+                        }}
+                        placeholderSource={require('../Images/default-car-home.png')}
+                        style={{ width: screenWidth - 10, height: extraHeaderHeight - 0, alignSelf: "center" }}
+                        
+                      /> */}
+
+                      <FastImage
+                        style={{ width: screenWidth - 10, height: extraHeaderHeight - 20, alignSelf: "center", }}
+                        source={{
+                          uri: this.state.bannerResponse[key]
+                        }}
+                        resizeMode={FastImage.resizeMode.contain}
+                        placeholderColor="red"
+
+                      />
+
+                      <Text
+                        style={{ color: "white", textAlign: "center", fontSize: 10, marginLeft: 10, marginRight: 10, marginTop: -40 }}
+                      >{item.Description} </Text>
+
+
+                    </View>
+
+                    : <Text
+                      style={{ color: "white", textAlign: "center", fontSize: 10, marginLeft: 10, marginRight: 10, marginTop: -40 }}
+                    >{null} </Text>}
+
+
+                  {item.RegistrationNumber != undefined || "" ?
+
+
+                    <View>
+
+                      {/* <Image
+                        source={{
+                          uri: this.state.bannerResponse[key]
+
+                        }}
+                        placeholderSource={require('../Images/default-car-home.png')}
+                        style={{ width: screenWidth - 10, height: extraHeaderHeight - 40, alignSelf: "center" }}
+                      /> */}
+
+                      <FastImage
+                        style={{ width: screenWidth - 10, height: extraHeaderHeight - 50, alignSelf: "center", margin: 10 }}
+                        source={{
+                          uri: this.state.bannerResponse[key]
+                        }}
+                        resizeMode={FastImage.resizeMode.contain}
+                      />
+
+
+
+                      <View style={{ marginRight: 20, marginTop: -20, }}>
+
+
+
+                        <Text style={{ color: "white", textAlign: "center", marginTop: 0, fontSize: 20 }}
+                        >{item.RegistrationNumber} </Text>
+
+                      </View>
+                      <View style={{ flexDirection: "row", marginTop: 10, backgroundColor: "red" }}>
+
+
+
+                        <Text style={{ color: "white", textAlign: "center", fontSize: 15, flex: 1 }}
+                        > Previous Service </Text>
+
+
+                        <Text style={{ color: "white", textAlign: "center", fontSize: 15, flex: 1 }}
+                        > Next Service </Text>
+
+
+
+                      </View>
+
+
+                      <View style={{ flexDirection: "row", marginTop: 0, backgroundColor: "red" }}>
+
+
+
+                        <Text style={{ color: "white", textAlign: "center", fontSize: 15, flex: 1 }}
+                        > {item.LastServiceDate}</Text>
+
+
+                        <Text style={{ color: "white", textAlign: "center", fontSize: 15, flex: 1 }}
+                        > {item.NextServiceDate} </Text>
+
+
+
+                      </View>
+
+                    </View>
+
+
+
+                    :
+                    <Text
+                      style={{ color: "white", textAlign: "center", fontSize: 10, marginLeft: 10, marginRight: 10, marginTop: -40 }}
+                    >{null}
+                    </Text>
+
+
+
+
+
+                  }
+
+
+
+
+
+                </View>
+
+              )
+            })}
+
+          </Swiper>
+          :
+          <Swiper style={styles.wrapper} showsButtons={false} autoplay={true} dotColor="white" dotColor="white" activeDot={<View style={{ backgroundColor: 'white', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginBottom: -20, }} />} dot={<View style={{ backgroundColor: 'rgba(0,0,0,.2)', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginBottom: -20 }} />}   >
+            {DataList.map((item, key) => {
+              return (
+                <View style={styles.slide1}>
+
+
+                  <Image
+                    source={item.bannerImage}
+                    placeholderColor={'#cfd8dc'}
+                    style={{ width: screenWidth - 10, height: extraHeaderHeight - 40, alignSelf: "center", resizeMode: "stretch" }}
+                  />
+                  <Text
+                    style={{ color: "white", textAlign: "center", margin: 10 }}
+                  >{item.bannerText}</Text>
+
+
+                </View>
+
+              )
+            })}
+
+          </Swiper>
+
+        }
       </View>
 
 
-{this.state.bannerResponse !=  []  ? 
-   
-
-   <Swiper style={styles.wrapper} showsButtons={false} autoplay={true} dotColor="white" dotColor="white" activeDot={<View style={{ backgroundColor: 'white', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginBottom: -20, }} />} dot={<View style={{ backgroundColor: 'rgba(0,0,0,.2)', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginBottom: -20 }} />}   >
-     {this.state.bannerResponse.map((item, key) => {
-       
-       console.log(item.Path)
-       console.log(item.ImagePath)
-
-
-       return (
-         <View style={styles.slide1}>
-
-    
-
-
-           <AsyncImageAnimated
-             source={{
-        
-               uri:   item.Path
-             }}
-             placeholderSource={require('../Images/default-car-home.png')}
-             style={{ width: screenWidth - 10, height: extraHeaderHeight - 0, alignSelf: "center", resizeMode: "strech",}}
-           />
-
-           <Text
-             style={{ color: "white", textAlign: "center", fontSize: 10, marginLeft: 10 ,marginRight:10,marginTop:-40}}
-           >{item.Description}</Text>
-
-
-         </View>
-
-       )
-     })}
-
-   </Swiper>
-:
-     <Swiper style={styles.wrapper} showsButtons={false} autoplay={true} dotColor="white"     dotColor="white"      activeDot = {<View style={{backgroundColor: 'white', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginBottom: -20,}} />} dot = {<View style={{backgroundColor:'rgba(0,0,0,.2)', width: 8, height: 8,borderRadius: 4, marginLeft: 3, marginRight: 3,  marginBottom: -20}} />}   >
-     {DataList.map((item, key) => {
-       return (
-         <View style={styles.slide1}>
-
-     
-           <Image
-         source = {item.bannerImage}
-             placeholderColor={'#cfd8dc'}
-             style={{ width:screenWidth - 10 ,height: extraHeaderHeight - 40,alignSelf:"center",resizeMode:"stretch"}}
- 
-           />
-           <Text
-             style={{ color: "white", textAlign: "center", margin:10}}
-           >{item.bannerText}</Text>
-
-
-         </View>
-
-       )
-     })}
-
-   </Swiper> 
-
-    }
-    </View>
 
 
 
-   
-   
     )
 
 
@@ -570,7 +836,7 @@ function mapDispatchToProps(dispatch) {
 const collapsibleParams = {
   collapsibleComponent: SearchBarField,
   collapsibleBackgroundStyle: {
-    height: extraHeaderHeight + 30,
+    height: extraHeaderHeight + 50,
     backgroundColor: BackgroundColor,
 
     borderColor: BackgroundColor,
@@ -581,13 +847,13 @@ const collapsibleParams = {
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withCollapsible(DashboardView, collapsibleParams));
+export default connect(mapStateToProps, mapDispatchToProps)(withCollapsible(DashboardView,collapsibleParams));
 
 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    height: extraHeaderHeight,
+    height: extraHeaderHeight + 0,
 
     borderRadius: 10,
 
@@ -600,7 +866,8 @@ const styles = StyleSheet.create({
     //  backgroundColor: '#4d2c97',
     flexDirection: 'row',
     height: 60,
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
+   
 
   },
   headertext: {

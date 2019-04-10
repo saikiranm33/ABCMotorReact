@@ -1,4 +1,3 @@
-
 import * as yup from 'yup'
 import { Formik } from 'formik'
 import React, { Component, Fragment } from 'react';
@@ -11,7 +10,7 @@ import Utilites from '../../Utilites/utilites'
 import Constant from '../../Utilites/Constant'
 import { loadTODOTask,checkTermsAndCondition } from '../../Redux/action'
 import getDataItem from '../../Storage/getAsyncData'
-
+import CustomSpinner from '../../Utilites/CustomSpinner'
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -60,6 +59,7 @@ class Registration extends Component {
             this.setState({ termsSelectionBox: false })
             this.props.checkTerms(false)
         }
+
 
     }
 
@@ -194,7 +194,7 @@ componentWillMount()
                 [
 
                      // Second Cancel Button in Alert Dialog.
-                     { text: 'Cancel', onPress: () => console.log('Cancel Button Pressed'), style: 'cancel' },
+                     { text: 'Cancel', onPress: () =>   console.log('Cancel Button Pressed'), style: 'cancel' },
 
                     // First Text Button in Alert Dialog.
 
@@ -469,14 +469,7 @@ componentWillMount()
                             <Text style={{ padding: 50, alignSelf: "center" }} > SKIP REGISTRATION </Text>
 
 
-                            <Spinner
-                                visible={this.state.isLoading}
-                                textContent={"Please Wait"}
-                            
-                                textStyle={styles.spinnerTextStyle}
-                                animation={"fade"}
-                                color="#0766ff"
-                            />
+                           <CustomSpinner   isLoading = {this.state.isLoading} />
 
                         </ScrollView>
 

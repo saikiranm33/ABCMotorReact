@@ -1,5 +1,9 @@
 import { AsyncStorage } from 'react-native'
 
+
+import removeItemValue from '../Storage/removeAsyncData'
+
+
 import TokenService from '@around25/jwt-utils'
 const Token = new TokenService({
   storageSystem: AsyncStorage
@@ -17,7 +21,16 @@ const isLoggedIn = async () => {
   return !!tok
 }
 
-const logout = () => {
+const logout = () => 
+{
+
+  removeItemValue("CustomerID")
+  removeItemValue("LoyaltyEnrolled")
+  removeItemValue("DeviceToken")
+  removeItemValue("DateFormat")
+  removeItemValue("CustomerDetails")
+  removeItemValue("AppName")
+ 
   return Token.remove();
 }
 

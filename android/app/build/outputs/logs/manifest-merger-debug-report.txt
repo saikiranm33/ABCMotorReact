@@ -5,6 +5,8 @@ INJECTED from /Users/nunc/Desktop/ABCMotorReact/android/app/src/main/AndroidMani
 INJECTED from /Users/nunc/Desktop/ABCMotorReact/android/app/src/main/AndroidManifest.xml:1:1-40:12
 INJECTED from /Users/nunc/Desktop/ABCMotorReact/android/app/src/main/AndroidManifest.xml:1:1-40:12
 MERGED from [:react-native-firebase] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-firebase/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-15:12
+MERGED from [:react-native-fast-image] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-fast-image/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-view-overflow] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-view-overflow/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-device-info] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-device-info/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-22:12
 MERGED from [:react-native-vector-icons] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-gesture-handler] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:2:1-11:12
@@ -28,6 +30,8 @@ MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] /Users/
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/38a2fac0b03fc6f4d96b59b6c24305bf/AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:support-v4:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/272d883b139cba0c2b6de39b850e39ba/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:multidex:1.0.2] /Users/nunc/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/2b98f0787ff6362b056915b2337a789f/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/okhttp3-integration-4.7.1.aar/e2d6ba0d6a9cb7cb51f06008ca991f5c/AndroidManifest.xml:2:1-16:12
+MERGED from [com.github.bumptech.glide:glide:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/glide-4.7.1.aar/695398dc4e5191caef2a66f110b0e128/AndroidManifest.xml:2:1-13:12
 MERGED from [com.android.support:support-media-compat:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/31194de70dd07592fcccb071bb1be0fa/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/355203a7833257b1335a58f89c68bab1/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/9de59708539f87e7c0644c92c0af69f7/AndroidManifest.xml:17:1-22:12
@@ -51,6 +55,7 @@ MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/nunc/.grad
 MERGED from [com.android.support:print:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/99c10262cd27f5c1da59a5ea7e5f8fdf/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/62596edb663bf42908219348e175783e/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:interpolator:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/b41bb04a57fcbb45f67d59e998b6e33b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.7.1.aar/9badff17c8859a22d85c88a5e14257f2/AndroidManifest.xml:2:1-11:12
 MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/6e25c1ecd865f35eb671c9fcc76d8755/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/8ee4b3d776243de32493ae08e699c7b9/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/3ce6e4912c5b8467a86ee7047d912f57/AndroidManifest.xml:17:1-22:12
@@ -150,10 +155,16 @@ MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] /Users/
 MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-15.0.1.aar/ebdef39ca5da5872f5bce176594a0f25/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/38a2fac0b03fc6f4d96b59b6c24305bf/AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:16.0.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/38a2fac0b03fc6f4d96b59b6c24305bf/AndroidManifest.xml:22:5-26:19
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/okhttp3-integration-4.7.1.aar/e2d6ba0d6a9cb7cb51f06008ca991f5c/AndroidManifest.xml:10:5-14:19
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/okhttp3-integration-4.7.1.aar/e2d6ba0d6a9cb7cb51f06008ca991f5c/AndroidManifest.xml:10:5-14:19
+MERGED from [com.github.bumptech.glide:glide:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/glide-4.7.1.aar/695398dc4e5191caef2a66f110b0e128/AndroidManifest.xml:11:5-20
+MERGED from [com.github.bumptech.glide:glide:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/glide-4.7.1.aar/695398dc4e5191caef2a66f110b0e128/AndroidManifest.xml:11:5-20
 MERGED from [com.android.support:support-compat:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/f872450b2cbbf143901d1ddaba3088df/AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:support-compat:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/f872450b2cbbf143901d1ddaba3088df/AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/afd3e0f1df396ea52ccf2fb82b8cc3b4/AndroidManifest.xml:22:5-23:19
 MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/afd3e0f1df396ea52ccf2fb82b8cc3b4/AndroidManifest.xml:22:5-23:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.7.1.aar/9badff17c8859a22d85c88a5e14257f2/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.7.1.aar/9badff17c8859a22d85c88a5e14257f2/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/soloader-0.6.0.aar/e64095fc9741df995648b9e170ee37e7/AndroidManifest.xml:11:5-20
 MERGED from [com.facebook.soloader:soloader:0.6.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/soloader-0.6.0.aar/e64095fc9741df995648b9e170ee37e7/AndroidManifest.xml:11:5-20
 MERGED from [org.webkit:android-jsc:r174650] /Users/nunc/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/be301b6418a37fbed6564fb737ae47dc/AndroidManifest.xml:2:3-17
@@ -234,6 +245,10 @@ INJECTED from /Users/nunc/Desktop/ABCMotorReact/android/app/src/main/AndroidMani
 INJECTED from /Users/nunc/Desktop/ABCMotorReact/android/app/src/main/AndroidManifest.xml
 MERGED from [:react-native-firebase] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-firebase/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-firebase] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-firebase/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-fast-image] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-fast-image/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-fast-image] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-fast-image/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-view-overflow] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-view-overflow/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-view-overflow] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-view-overflow/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-device-info] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-device-info/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-device-info] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-device-info/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/nunc/Desktop/ABCMotorReact/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:7:5-9:41
@@ -280,6 +295,10 @@ MERGED from [com.android.support:support-v4:28.0.0] /Users/nunc/.gradle/caches/t
 MERGED from [com.android.support:support-v4:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/272d883b139cba0c2b6de39b850e39ba/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:multidex:1.0.2] /Users/nunc/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/2b98f0787ff6362b056915b2337a789f/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:multidex:1.0.2] /Users/nunc/.gradle/caches/transforms-1/files-1.1/multidex-1.0.2.aar/2b98f0787ff6362b056915b2337a789f/AndroidManifest.xml:20:5-43
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/okhttp3-integration-4.7.1.aar/e2d6ba0d6a9cb7cb51f06008ca991f5c/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:okhttp3-integration:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/okhttp3-integration-4.7.1.aar/e2d6ba0d6a9cb7cb51f06008ca991f5c/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/glide-4.7.1.aar/695398dc4e5191caef2a66f110b0e128/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.bumptech.glide:glide:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/glide-4.7.1.aar/695398dc4e5191caef2a66f110b0e128/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:support-media-compat:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/31194de70dd07592fcccb071bb1be0fa/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-media-compat:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/31194de70dd07592fcccb071bb1be0fa/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/355203a7833257b1335a58f89c68bab1/AndroidManifest.xml:20:5-44
@@ -326,6 +345,8 @@ MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/nunc/.gradle/caches/
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/62596edb663bf42908219348e175783e/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:interpolator:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/b41bb04a57fcbb45f67d59e998b6e33b/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:interpolator:28.0.0] /Users/nunc/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/b41bb04a57fcbb45f67d59e998b6e33b/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.7.1.aar/9badff17c8859a22d85c88a5e14257f2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.7.1.aar/9badff17c8859a22d85c88a5e14257f2/AndroidManifest.xml:5:5-7:41
 MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/6e25c1ecd865f35eb671c9fcc76d8755/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/6e25c1ecd865f35eb671c9fcc76d8755/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/8ee4b3d776243de32493ae08e699c7b9/AndroidManifest.xml:20:5-44
@@ -536,6 +557,12 @@ ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/nunc/.g
 		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/38a2fac0b03fc6f4d96b59b6c24305bf/AndroidManifest.xml:25:13-66
 	android:name
 		ADDED from [com.google.android.gms:play-services-basement:16.0.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/38a2fac0b03fc6f4d96b59b6c24305bf/AndroidManifest.xml:24:13-58
+meta-data#com.bumptech.glide.integration.okhttp3.OkHttpGlideModule
+ADDED from [com.github.bumptech.glide:okhttp3-integration:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/okhttp3-integration-4.7.1.aar/e2d6ba0d6a9cb7cb51f06008ca991f5c/AndroidManifest.xml:11:9-13:43
+	android:value
+		ADDED from [com.github.bumptech.glide:okhttp3-integration:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/okhttp3-integration-4.7.1.aar/e2d6ba0d6a9cb7cb51f06008ca991f5c/AndroidManifest.xml:13:13-40
+	android:name
+		ADDED from [com.github.bumptech.glide:okhttp3-integration:4.7.1] /Users/nunc/.gradle/caches/transforms-1/files-1.1/okhttp3-integration-4.7.1.aar/e2d6ba0d6a9cb7cb51f06008ca991f5c/AndroidManifest.xml:12:13-84
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 IMPLIED from /Users/nunc/Desktop/ABCMotorReact/android/app/src/main/AndroidManifest.xml:1:1-40:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 uses-permission#android.permission.READ_PHONE_STATE
