@@ -211,6 +211,9 @@ class OTPVerify extends React.Component {
     const CustomerID = navigation.getParam('CustomerID', '');
 
 
+    
+
+
     this.setState({ cutomerStateID: CustomerID })
 
     console.log(CustomerID)
@@ -283,6 +286,9 @@ class OTPVerify extends React.Component {
 
 
 
+  
+
+
   myhandleServicePress = async () => {
 
 
@@ -318,7 +324,7 @@ class OTPVerify extends React.Component {
     console.log(userDict)
 
 
-    AsyncStorage.setItem("CustomerDetails", JSON.stringify(userDict))
+   
 
 
 

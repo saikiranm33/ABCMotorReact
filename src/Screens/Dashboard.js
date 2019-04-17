@@ -34,7 +34,7 @@ import Carousel from 'react-native-snap-carousel';
 
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-const extraHeaderHeight = Dimensions.get('window').height / 2 + 50;
+const extraHeaderHeight = Dimensions.get('window').height / 2  + 50;
 const screenWidth = Dimensions.get('window').width;
 const BackgroundColor = "#4d2c97"
 
@@ -89,6 +89,7 @@ class DashboardView extends Component {
       data: data,
       photoData: null,
 
+
     };
   }
 
@@ -96,12 +97,10 @@ class DashboardView extends Component {
     header: null
   }
 
-  componentDidMount() {
-
-
+  componentDidMount()
+   {
 
     console.log("Called Me Dashbaord")
-
 
   }
 
@@ -216,6 +215,7 @@ class SwiperClass extends DashboardView {
       bannerResponse: [],
       notificationCount: null,
       totalStateResponse: [],
+      CustomerRequest:[],
 
     }
 
@@ -364,6 +364,8 @@ class SwiperClass extends DashboardView {
 
 
         if (responseValue.Status.StatusCode == 2) {
+
+          
           console.log("Success")
 
         }
@@ -425,6 +427,8 @@ class SwiperClass extends DashboardView {
       "Version": item.Version,
 
     }
+
+
 
     console.log(bodyFormData)
 

@@ -147,7 +147,6 @@ class VersionUpdate extends Component {
   
 
 
-
    componentWillReceiveProps(nextProps) {
 
     console.log("Next Props Called me")

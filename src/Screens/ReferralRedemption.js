@@ -5,6 +5,13 @@ import Constant from '../Utilites/Constant'
 import Utilites from '../Utilites/utilites'
 import getDataItem from '../Storage/getAsyncData'
 import axios from 'axios'
+import CustomSpinner from '../Utilites/CustomSpinner'
+
+
+
+
+
+
 
 // You can import from local files
 
@@ -19,17 +26,9 @@ export default class ReferralRedemption extends React.Component {
     super(props);
     this.state = { 
       referralTxt: '' ,
-  
+      isLoading: false,
       };
   }
-
-
-
-
-
-
-
-
 
   GetReferralRedemption = async (item) => {
 
@@ -52,64 +51,101 @@ export default class ReferralRedemption extends React.Component {
   
 
 
-    fetch(Constant.ServiceURL + 'SaveDrivingRequest', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+  axios({
+    method: 'post',
+    url: Constant.ServiceURL + 'RedeemReferelCode',
+    data: reuiredInput,
   
-        reuiredInput
-        
-      })
-    })
-      .then((response) => response.json())
+  })
+    .then(function (response) {
   
-      .then((responseJson) => {
+      console.log(response);
   
-        this.setState({ isLoading: false })
+      this.setState({ isLoading: false })
   
-     
+      console.log("SaveDrivingRequest Response")
   
   
-        console.log(responseJson)
+      let responseValue = response.data
+  
+      if (responseValue.Status.StatusCode == "2") 
+      {
+        console.log("Success")
+        // Alert.alert("Thanks, Your request has been accepted. You will be contacted shortly.")
   
   
-        let responseValue = responseJson.StatusCode
-  
-  
-        if (responseValue == "2") {
-  
-          console.log("Success")
-  
-         
-  
-          Alert.alert(`Our representative will get back to you shortly `);
-  
-       
-  
-         // this.GetCustomerVehicleList(item)
-  
-          return responseJson
-        }
-  
-  
-        else 
+        Alert.alert(
+          'Success',
+          'Thanks, Your request has been accepted. You will be contacted shortly.',
+          [
+            { text: 'OK', onPress: () => { this.props.navigation.goBack(null), this.setState({referralTxt:""}) } },
+          ]
+        )
+      }
+   
+
+      else if (responseValue.Status.StatusCode == "1") 
+      {
+        if (responseValue.DataCode == "-1") 
         {
-         Alert.alert(`Something went wrong please try after some time`);
+          Alert.alert("Multiple Users Logged Please Register Again")
+          console.log("Multiple User Called ")
   
-         this.setState({ isLoading: false })
+        }
+       else if (responseValue.Status.DataCode == "0") 
+        {
+     
+          console.log(responseValue.Status.StatusMsg)
+
+          Alert.alert(
+            'Alert',
+            responseValue.Status.StatusMsg,
+            [
+              { text: 'OK', onPress: () => { this.setState({referralTxt:""}) } },
+            ]
+          )
   
         }
   
-      })
-      .catch((error) => {
-        this.setState({ isLoading: false })
-        Alert.alert(`Something went wrong please try after some time`);
+      }
   
-        console.error(error);
+    }.bind(this))
+    .catch(error => {
   
-      });
+      console.log(error), this.setState({ isLoading: false })
+      // Alert.alert(`Something went wrong please try after some time`);
+  
+      console.error(error);
+    }
+    )
+    .then(function () {
+      // always executed
+  
+      this.setState({ isLoading: false })
+    });
+
+  }
+
+  ValidateDetailsEntered()
+  {
+
+    console.log(this.state.referralTxt)
+
+    console.log(this.state.referralTxt.length)
+
+
+    if (this.state.referralTxt)
+    {
+      this.setState({ isLoading: true })
+       this.checkAppVersion()
+
+    }
+    else
+    {
+     Alert.alert("Please  Enter the Referral Code")
+    }
+
+
 
   }
 
@@ -122,24 +158,30 @@ export default class ReferralRedemption extends React.Component {
     console.log("Hello World")
 
 
-  let requiredArr = []
+
+   
+      let requiredArr = []
   
-    getDataItem('CustomerID', (CustomerID) => {
-  
-    getDataItem('CustomerDetails', (userToken) => {
-  
-  
-   requiredArr.push(JSON.parse(userToken))
-   requiredArr.push(CustomerID)
-  
-      console.log(requiredArr)
-  
-    this.GetReferralRedemption(requiredArr)
-  
-  
+      getDataItem('CustomerID', (CustomerID) => {
+    
+      getDataItem('CustomerDetails', (userToken) => {
+    
+    
+     requiredArr.push(JSON.parse(userToken))
+     requiredArr.push(CustomerID)
+    
+        console.log(requiredArr)
+    
+      this.GetReferralRedemption(requiredArr)
+    
+    
+      });
+    
     });
-  
-  });
+
+
+
+
 
 }
 
@@ -169,6 +211,7 @@ export default class ReferralRedemption extends React.Component {
     placeholder="Enter Referral Code"
     style={styles.textStyle}
     maxLength={10}
+    keyboardType = {"number-pad"}
 />
 </View>
 
@@ -178,13 +221,13 @@ export default class ReferralRedemption extends React.Component {
 
    <TouchableOpacity
          style={{height:50,backgroundColor:"#f4bf42",borderRadius:50/2 ,justifyContent:"center",alignSelf:"center",width:240,marginTop:30}}
-         onPress={() =>  this.GetReferralRedemption()}
+         onPress={() =>  this.ValidateDetailsEntered()}
        >
          <Text style ={{textStyle:"bold",alignSelf:"center"}}> SUBMIT </Text>
   </TouchableOpacity>
 
 
-
+  <CustomSpinner isLoading = {this.state.isLoading}/>
 
 
       </View>

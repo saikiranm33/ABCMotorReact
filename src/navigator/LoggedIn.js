@@ -128,7 +128,7 @@ const LoggedInNavigator = createStackNavigator(
   
     },
     {
-      initialRouteName: 'dashBoardView2',
+      initialRouteName: 'dashBoardView',
     },
     {
       defaultNavigationOptions: {

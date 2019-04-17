@@ -53,11 +53,13 @@ export default class NewVariantList extends React.Component {
    
     let bodyFormData = {
 
-     
-    "DeviceId": item[0].DeviceId, 
-    "Version": item[0].Version,
-    "CustomerId": item[1] ,
-    "ModelName": modelInfo,
+      "DeviceId": item[0][1][0].DeviceToken,
+      "Version": item[0][1][0].Version,
+      "CustomerId": item[1],
+      "ModelName": modelInfo,
+
+
+   
     }
 
     console.log(bodyFormData)

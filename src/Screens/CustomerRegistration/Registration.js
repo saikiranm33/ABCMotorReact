@@ -184,6 +184,8 @@ componentWillMount()
 
             let otpServer = item.Data.OTP
 
+            AsyncStorage.setItem("CustomerDetails", JSON.stringify(this.state.customerDetails))
+
             Alert.alert(
 
                 // This is Alert Dialog Title
@@ -199,11 +201,6 @@ componentWillMount()
                     // First Text Button in Alert Dialog.
 
                     { text: 'OK', onPress: () => this.props.navigation.navigate('otpVerify', { "OTP": otpServer,"isVehicleExisted": isVehicleExisted,"CustomerInfo":this.state.customerDetails,"CustomerID":item.Data.CustomerId}) },
-
-                    
-
-                   
-
                 ]
 
             )

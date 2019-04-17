@@ -68,13 +68,14 @@ export default class NewCarList extends React.Component {
 
   GetCarModelList = async (item) => {
 
-    //console.log("Banner List Called")
+    console.log("GetCarModelList  Called")
 
+    console.log(item[0][0])
 
     let bodyFormData = 
     {
-      "DeviceId": item[0].DeviceId,
-      "Version": item[0].Version,
+      "DeviceId": item[0][1][0].DeviceToken,
+      "Version": item[0][1][0].Version,
       "CustomerId": item[1],
       "PageNumber": this.state.pageNumber,
     }
@@ -184,11 +185,9 @@ export default class NewCarList extends React.Component {
 
         console.log(requiredArr)
 
-
         this.setState({ requiredInfo:requiredArr})
 
         this.GetCarModelList(requiredArr)
-
 
       });
 

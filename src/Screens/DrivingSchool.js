@@ -4,6 +4,10 @@ import Header from '../Components/header'
 import Constant from '../Utilites/Constant'
 import getDataItem from '../Storage/getAsyncData'
 import { login ,logout} from '../api/auth'
+import CustomSpinner from '../Utilites/CustomSpinner'
+import axios from 'axios'
+
+
 
 
 // You can import from local files
@@ -73,67 +77,65 @@ export default class DrivingSchool extends React.Component {
 console.log(reuiredInput)
 
 
-  fetch(Constant.ServiceURL + 'SaveDrivingRequest', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+axios({
+  method: 'post',
+  url: Constant.ServiceURL + 'SaveDrivingRequest',
+  data: reuiredInput,
 
-      reuiredInput
-      
-    })
-  })
-    .then((response) => response.json())
+})
+  .then(function (response) {
 
-    .then((responseJson) => {
+    console.log(response);
 
-      this.setState({ isLoading: false })
+    this.setState({ isLoading: false })
 
-      console.log("Driving School Response")
+    console.log("SaveDrivingRequest Response")
 
 
-      console.log(responseJson)
+    let responseValue = response.data
+
+    if (responseValue.StatusCode == 2) 
+    {
+      console.log("Success")
+      // Alert.alert("Thanks, Your request has been accepted. You will be contacted shortly.")
 
 
-      let responseValue = responseJson.StatusCode
+      Alert.alert(
+        'Success',
+        'Thanks, Your request has been accepted. You will be contacted shortly.',
+        [
+          { text: 'OK', onPress: () => { this.props.navigation.goBack(null) } },
+        ]
+      )
+    }
 
 
-      console.log(responseValue)
+    else if (responseValue.StatusCode == 1) 
+    {
+      if (responseValue.DataCode == -1) 
+      {
+        Alert.alert("Multiple Users Logged Please Register Again")
+        console.log("Multiple User Called ")
 
+      }
 
-      // if (responseValue  == "2") {
+    }
 
-      //   console.log("Success")
+  }.bind(this))
+  .catch(error => {
 
-       
+    console.log(error), this.setState({ isLoading: false })
+    // Alert.alert(`Something went wrong please try after some time`);
 
-      //   Alert.alert(`Our representative will get back to you shortly `);
+    console.error(error);
+  }
+  )
+  .then(function () {
+    // always executed
 
-     
+    this.setState({ isLoading: false })
+  });
 
-      //  // this.GetCustomerVehicleList(item)
-
-      //   return responseJson
-      // }
-
-
-      // else 
-      // {
-      //  Alert.alert(`Something went wrong please try after some time`);
-
-      //  this.setState({ isLoading: false })
-
-      // }
-
-    })
-    .catch((error) => {
-      this.setState({ isLoading: false })
-      Alert.alert(`Something went wrong please try after some time`);
-
-      console.error(error);
-
-    });
 
 }
 
@@ -184,6 +186,9 @@ console.log(reuiredInput)
          {/* onPress={() =>  this.onLogOut() }>  */}
           <Text style={{ textStyle: "bold", alignSelf: "center" }}> BOOK AN APPOINTMENT </Text>
         </TouchableOpacity>
+
+
+        <CustomSpinner isLoading = {this.state.isLoading}/>
 
 
       </View>
